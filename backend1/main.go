@@ -7,12 +7,16 @@ import (
 	"log"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 )
 
 func main() {
 	//mesin utama 
     app := fiber.New()
 	database.Connect()
+
+	app.Use(cors.New())
+
 	//route 
 	app.Post("/login",route.Login )
 	app.Post("/register", route.Register)
@@ -27,5 +31,5 @@ func main() {
 
 	//akan berjalan di port mana 
 	//aplikasi ini akan berjalan di port 3000
-    log.Fatal(app.Listen(":3000"))
+    log.Fatal(app.Listen(":4000"))
 }
